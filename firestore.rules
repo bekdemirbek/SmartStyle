@@ -1,0 +1,81 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /favorite_outfits/{favoriteId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    match /kombinler/{outfitId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+
+    match /travel_plans/{planId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.userId == request.auth.uid;
+
+      match /day_plans/{dayPlanId} {
+        allow create: if isSignedIn() &&
+          getAfter(
+            /databases/$(database)/documents/travel_plans/$(planId)
+          ).data.userId == request.auth.uid;
+        allow read, update, delete: if isSignedIn() &&
+          get(
+            /databases/$(database)/documents/travel_plans/$(planId)
+          ).data.userId == request.auth.uid;
+      }
+    }
+
+    match /ust_giyim/{itemId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+
+    match /alt_giyim/{itemId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+
+    match /dis_giyim/{itemId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+
+    match /ayakkabi/{itemId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+
+    match /corap/{itemId} {
+      allow create: if isSignedIn() &&
+        request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if isSignedIn() &&
+        resource.data.user_id == request.auth.uid;
+    }
+  }
+}

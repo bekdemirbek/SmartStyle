@@ -1,0 +1,43 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "smartstyle-app-63929",
+          "appId": "1:107490218692:android:e8f167d99bed117d0eaf91",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "smartstyle-app-63929",
+          "configurations": {
+            "android": "1:107490218692:android:e8f167d99bed117d0eaf91",
+            "ios": "1:107490218692:ios:fed868a8ad3b6c390eaf91",
+            "web": "1:107490218692:web:52d67491fcc4ffa90eaf91"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix functions run lint",
+        "npm --prefix functions run build"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}

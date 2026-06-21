@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "107490218692",
+    "project_id": "smartstyle-app-63929",
+    "storage_bucket": "smartstyle-app-63929.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107490218692:android:e8f167d99bed117d0eaf91",
+        "android_client_info": {
+          "package_name": "com.example.deneme_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107490218692-dbb20id948m5j1s9s52hv0pk8uvfd7s4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deneme_1",
+            "certificate_hash": "d8dc898438fd8468ae5bb6d24864f9e24089a95a"
+          }
+        },
+        {
+          "client_id": "107490218692-klprir693qeu53j3ighuo7uhktiv9gas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCel_25NqLyBgEij1riHlsDLehCXz-5fSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107490218692-klprir693qeu53j3ighuo7uhktiv9gas.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "107490218692-jdm950ln00d8d5uoo4j9dosnamj5qtv8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.deneme1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
