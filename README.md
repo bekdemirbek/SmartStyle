@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/c05a4334-2323-4615-a00c-779dd7e90a13
+
 # SmartStyle 👕
 
 SmartStyle is a Flutter wardrobe assistant: users photograph their clothes, and
