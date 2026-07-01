@@ -151,9 +151,21 @@ separate from the deployed backend.
   `PHOTOROOM_API_KEY` are declared as Cloud Functions secrets
   (`defineSecret(...)`) and injected at runtime — the Flutter app only knows the
   function URL, never the keys. `.env` / service-account files are git-ignored.
-- **Known gap (honest):** Storage security rules are **not yet in the repo**
-  (`firebase.json` deploys only `firestore.rules`). Since raw user photos land in
-  Storage, owner-scoped Storage rules are the next hardening step.
+
+### Known gaps / next hardening (honest)
+
+- **Function-call protection / App Check.** The AI functions are public HTTPS
+  endpoints (`onRequest`, `cors: true`) and currently do **not** verify the
+  caller — there is no Firebase **App Check** and no auth-token/`request.auth`
+  check in the handlers. In practice anyone who discovers a function URL could
+  POST to it and consume the project's Gemini / Firebase quota. The fix is to
+  enforce App Check (and/or migrate these to `onCall` callable functions, which
+  provide `request.auth` and built-in App Check enforcement) plus per-user rate
+  limiting. *(The functions do validate and ground their input, but that
+  protects output quality, not billing.)*
+- **Storage security rules** are **not yet in the repo** (`firebase.json` deploys
+  only `firestore.rules`). Since raw user photos land in Storage, owner-scoped
+  Storage rules are a needed hardening step.
 
 ## Testing
 
@@ -213,6 +225,6 @@ Working / stable: auth, wardrobe CRUD with server-side image processing,
 weather-aware Gemini outfit generation **with rule-based fallback**, gap
 analysis, travel mode, favorites, owner-scoped Firestore rules.
 
-In progress / next: screenshots & demo recording, Storage security rules,
-folding the `recommendation_engine` prototype fully into the app, broader test
-coverage.
+In progress / next: screenshots & demo recording, **App Check / auth
+enforcement on the AI functions**, Storage security rules, folding the
+`recommendation_engine` prototype fully into the app, broader test coverage.
