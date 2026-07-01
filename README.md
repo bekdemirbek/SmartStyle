@@ -1,7 +1,5 @@
 
 
-https://github.com/user-attachments/assets/c05a4334-2323-4615-a00c-779dd7e90a13
-
 # SmartStyle 👕
 
 SmartStyle is a Flutter wardrobe assistant: users photograph their clothes, and
@@ -16,16 +14,10 @@ Firebase (Auth, Firestore, Storage) and Cloud Functions.
 
 ## Screenshots / Demo
 
-<!-- Add captures once available — for a wardrobe/outfit app the UI is the most
-     convincing artifact. Record the outfit flow + wardrobe grid, drop files in
-     docs/, then restore this block:
-     ![Demo](docs/demo.gif)
-     | Wardrobe | Outfit plan | Gap analysis | Travel mode |
-     |---|---|---|---|
-     | ![](docs/screenshots/wardrobe.png) | ![](docs/screenshots/outfits.png) | ![](docs/screenshots/gaps.png) | ![](docs/screenshots/travel.png) |
--->
+https://github.com/user-attachments/assets/c05a4334-2323-4615-a00c-779dd7e90a13
 
-_Screenshots pending — see the comment in the README source for the intended layout._
+<!-- Still images can be added later: drop PNGs in docs/screenshots/ and link
+     them here, e.g. ![Wardrobe](docs/screenshots/wardrobe.png). -->
 
 ## Features
 

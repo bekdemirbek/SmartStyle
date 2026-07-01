@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../models/outfit_ai_models.dart';
+import 'local_outfit_fallback.dart';
 
 class OutfitAiException implements Exception {
   final String message;
@@ -52,26 +53,14 @@ class OutfitAiService {
       final suggestions = OutfitSuggestionResponse.fromJson(payload);
 
       if (suggestions.days.isEmpty) {
-        throw const OutfitAiException(
-          'AI kombin cevabı boş geldi. Lütfen tekrar dene.',
-        );
+        throw const OutfitAiException('AI kombin cevabı boş geldi.');
       }
 
       return suggestions;
-    } on TimeoutException {
-      throw const OutfitAiException(
-        'Kombin önerisi zaman aşımına uğradı. Lütfen tekrar dene.',
-      );
-    } on FormatException {
-      throw const OutfitAiException(
-        'Kombin önerisi okunamadı. Lütfen tekrar dene.',
-      );
-    } on OutfitAiException {
-      rethrow;
     } catch (_) {
-      throw const OutfitAiException(
-        'Kombin önerisi hazırlanırken beklenmeyen bir hata oluştu.',
-      );
+      // AI servisi (Cloud Function) erişilemediğinde uygulamanın yerel yedek
+      // öneri mantığı devreye girer; kullanıcı yine geçerli bir plan görür.
+      return buildLocalOutfitResponse(request);
     }
   }
 
